@@ -1,2 +1,1 @@
-# Movies-Guanlan-Ji
-A github repository for Web application development continous assesment 1
+# A github repository for Web application development continous assesment 1

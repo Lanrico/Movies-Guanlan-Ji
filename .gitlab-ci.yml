@@ -1,0 +1,79 @@
+image: node:latest
+
+# Pipeline
+stages:
+  - install
+  - build
+  - exercise
+  - test
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/movies/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/movies/cache/Cypress"
+
+cache:
+  key:
+    files:
+      - movies/package.json
+  paths:
+    - movies/.npm
+    - movies/cache/Cypress
+    - movies/node_modules
+# Jobs 
+# install_dependencies:
+#   stage: install
+#   script:
+#     - cd movies
+#     - npm ci
+#   artifacts:
+#     paths:
+#       - movies/node_modules/
+
+install_dependencies:
+  stage: install
+  script:
+    - cd movies
+    - npm ci --cache .npm --prefer-offline
+
+bundle_app:
+  stage: build
+  script:
+    - cd movies
+    - npm run build
+  artifacts:
+    paths:
+      - movies/build/
+
+exercise_job:
+  stage: exercise
+  only:
+    - main
+  script:
+    - cd movies
+    - echo "Run exercise exercise_job" 
+
+e2etest:
+# Node docker image with Cypress and Chrome pre-installed
+  image: cypress/browsers:node12.14.1-chrome85-ff81
+  stage: test
+  script:
+    - cd movies
+    - echo "Run tests in headless mode"
+    - npm run start:ci
+
+build_jobX:
+  stage: build
+  only:
+    - develop
+  script:
+    - cd movies
+    - echo "build job X on demoBranch works"
+
+test_jobX:
+  stage: test
+  only:
+    - main
+    - branchX
+  script:
+    - cd movies
+    - echo "Run test job X"
