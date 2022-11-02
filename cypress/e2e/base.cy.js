@@ -34,7 +34,7 @@ describe("Base tests", () => {
     before(() => {
       cy.request(
         `https://api.themoviedb.org/3/movie/${
-          movies[0].id
+          movies[2].id
         }?api_key=${Cypress.env("TMDB_KEY")}`
       )
         .its("body")
@@ -43,7 +43,7 @@ describe("Base tests", () => {
         });
     });
     beforeEach(() => {
-      cy.visit(`/movies/${movies[0].id}`);
+      cy.visit(`/movies/${movies[2].id}`);
     });
     it(" displays the movie title, overview and genres and ", () => {
       cy.get("h3").contains(movie.title);

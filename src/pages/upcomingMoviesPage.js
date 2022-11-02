@@ -1,12 +1,16 @@
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { getUpcomingMovies } from "../api/tmdb-api";
+// import { getTrendingMovies } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import { useQuery } from 'react-query';
 import PlaylistAddIcon from '../components/cardIcons/addToMustWatch'
+import { useParams } from "react-router-dom";
 
 
 const UpcomingMoviesPage = (props) => {
+
+  const { pagination } = useParams();
 
   const {  data, error, isLoading, isError }  = useQuery('discoverUpcoming', getUpcomingMovies)
 
@@ -29,6 +33,8 @@ const UpcomingMoviesPage = (props) => {
       action={(movie) => {
         return <PlaylistAddIcon movie={movie} />
       }}    
+      page="/movies/upcoming"
+      pagination={pagination}
     />
   );
 };

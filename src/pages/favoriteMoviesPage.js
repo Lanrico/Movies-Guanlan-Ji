@@ -6,8 +6,12 @@ import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
+import { useParams } from "react-router-dom";
 
 const FavoriteMoviesPage = () => {
+
+  const { pagination } = useParams();
+
   const {favorites: movieIds } = useContext(MoviesContext);
 
   // Create an array of queries and run in parallel.
@@ -45,6 +49,8 @@ const FavoriteMoviesPage = () => {
           </>
         );
       }}
+      page="/movies/favorites"
+      pagination={pagination}
     />
   );
 };

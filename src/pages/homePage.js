@@ -4,8 +4,11 @@ import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import { useParams } from "react-router-dom";
 
 const HomePage = (props) => {
+
+  const { pagination } = useParams();
 
   const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
 
@@ -30,6 +33,8 @@ const HomePage = (props) => {
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
       }}
+      page=""
+      pagination={pagination}
     />
   );
 };

@@ -3,8 +3,11 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import Pagination from '@mui/material/Pagination';
+import { PaginationItem } from "@mui/material";
+import { Link } from "react-router-dom";
 
-function MovieListPageTemplate({ movies, title, action }) {
+function MovieListPageTemplate({ movies, title, action, page, pagination }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
@@ -22,6 +25,18 @@ function MovieListPageTemplate({ movies, title, action }) {
     else setGenreFilter(value);
   };
 
+  const moviesSlicer = (moviesList, size) => {
+    var moviesSlice = [];
+    for(var i = 0; i < moviesList.length; i = i + size){
+      moviesSlice.push(moviesList.slice(i,i + size));
+    }
+    return moviesSlice;
+  }
+
+  let movieSlice = moviesSlicer(displayedMovies, 11);
+
+  console.log(pagination-1)
+
   return (
     <Grid container sx={{ padding: '20px' }}>
       <Grid item xs={12}>
@@ -35,8 +50,13 @@ function MovieListPageTemplate({ movies, title, action }) {
             genreFilter={genreFilter}
           />
         </Grid>
-        <MovieList action={action} movies={displayedMovies}></MovieList>
+        <MovieList action={action} movies={movieSlice[pagination-1]}></MovieList>
       </Grid>
+      <Pagination count={movieSlice.length} color="primary" variant="outlined" shape="rounded" size="large" showFirstButton showLastButton page={parseInt(pagination)} sx={{ justifyContent: 'center', margin: 'auto', marginTop: '20px'}} 
+        renderItem={(item) => (
+          <PaginationItem component={Link} to={`${page}/page${item.page}`} {...item}/>
+        )}
+      />
     </Grid>
   );
 }
