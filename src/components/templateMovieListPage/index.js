@@ -6,11 +6,15 @@ import Grid from "@mui/material/Grid";
 import Pagination from '@mui/material/Pagination';
 import { PaginationItem } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function MovieListPageTemplate({ movies, title, action, page, pagination }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   let displayedMovies = movies
     .filter((m) => {
@@ -33,9 +37,7 @@ function MovieListPageTemplate({ movies, title, action, page, pagination }) {
     return moviesSlice;
   }
 
-  let movieSlice = moviesSlicer(displayedMovies, 11);
-
-  console.log(pagination-1)
+  let movieSlice = isMobile? moviesSlicer(displayedMovies, 5) : moviesSlicer(displayedMovies, 11);
 
   return (
     <Grid container sx={{ padding: '20px' }}>
