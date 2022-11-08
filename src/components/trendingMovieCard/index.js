@@ -1,60 +1,35 @@
-import React, { useContext  } from "react";
-import { MoviesContext } from "../../contexts/moviesContext";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import img from '../../images/film-poster-placeholder.png'
-import Avatar from '@mui/material/Avatar';
+import truncate from "lodash/truncate";
+import { Link } from "react-router-dom";
+import HoverRating from "../ratingBar";
 
-export default function MovieCard({ movie, action }) { 
-  const { favorites } = useContext(MoviesContext);
-  const { mustWatch } = useContext(MoviesContext);
-
-  if (favorites.find((id) => id === movie.id)) {
-    movie.favorite = true;
-  } else {
-    movie.favorite = false
-  }
-
-  if (mustWatch.find((id) => id === movie.id)) {
-    movie.mustWatch = true;
-  } else {
-    movie.mustWatch = false
-  }
+export default function TrendingMovieCard({ movie }) { 
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : 
-          movie.mustWatch ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
-              <PlaylistAddIcon />
-            </Avatar>
-          ) : null
-          
-        }
-        title={
-          <Typography variant="h5" component="p">
-            {movie.title}{" "}
-          </Typography>
-        }
-      />
-      <CardMedia
-        sx={{ height: 500 }}
-        image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
-        }
-      />
-    </Card>
+    <Link to={`/movies/${movie.id}`} style={{textDecorationLine: 'none'}}>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardHeader sx={{ padding: '5px' }}
+          title={
+            <Typography textAlign={'center'} variant="h5" component="p">
+              {truncate(movie.title, {length: 19})}{" "}
+            </Typography>
+          }
+        />
+        <CardMedia
+          sx={{ height: 390, width: 250 }}
+          image={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              : img
+          }
+        />
+        <HoverRating rate={movie.vote_average} />
+      </Card>
+    </Link>
   );
 }
