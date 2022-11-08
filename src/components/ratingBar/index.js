@@ -38,12 +38,12 @@ export default function HoverRating(rate) {
         name="hover-feedback"
         readOnly={true}
         size="large"
-        value={scoreConverter(rate.rate+0.01)}
+        value={scoreConverter(rate.rate+0.001)}
         precision={0.5}
         getLabelText={getLabelText}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
-      <Box sx={{ ml: 2 }}>{labels[scoreConverter(rate.rate+0.01)]}</Box>
+      <Box sx={{ ml: 2 }}>{labels[scoreConverter(rate.rate+0.001)]}</Box>
     </Box>
   );
 }
