@@ -24,7 +24,6 @@ function getLabelText(value) {
 }
 
 export default function HoverRating(rate) {
-  console.log(scoreConverter(rate.rate+0.01))
   return (
     <Box
       sx={{
@@ -37,7 +36,7 @@ export default function HoverRating(rate) {
     >
       <Rating
         name="hover-feedback"
-        readOnly='true'
+        readOnly={true}
         size="large"
         value={scoreConverter(rate.rate+0.01)}
         precision={0.5}
