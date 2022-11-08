@@ -10,8 +10,10 @@ const HomePage = (props) => {
 
   const { pagination } = useParams();
 
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
-
+  const { data, error, isLoading, isError } = useQuery(
+    ["discover", pagination],
+    getMovies
+  );
   if (isLoading) {
     return <Spinner />
   }
@@ -20,11 +22,11 @@ const HomePage = (props) => {
     return <h1>{error.message}</h1>
   }  
   const movies = data.results;
+  console.log(movies)
 
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
-  // const addToFavorites = (movieId) => true 
 
   return (
     <PageTemplate

@@ -8,6 +8,7 @@ import { PaginationItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import TrendingMovies from "../trendingMovieBar";
 
 function MovieListPageTemplate({ movies, title, action, page, pagination }) {
   const [nameFilter, setNameFilter] = useState("");
@@ -38,12 +39,21 @@ function MovieListPageTemplate({ movies, title, action, page, pagination }) {
   }
 
   let movieSlice = isMobile? moviesSlicer(displayedMovies, 5) : moviesSlicer(displayedMovies, 11);
-
   return (
     <Grid container sx={{ padding: '20px' }}>
       <Grid item xs={12}>
         <Header title={title} />
       </Grid>
+      {(page === "") ? (
+        <>
+          <Grid item xs={12}>
+            <TrendingMovies
+            />
+          </Grid>
+        </>
+      ):(
+        console.log(345345)
+      )}
       <Grid item container spacing={5}>
         <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
           <FilterCard
@@ -52,13 +62,25 @@ function MovieListPageTemplate({ movies, title, action, page, pagination }) {
             genreFilter={genreFilter}
           />
         </Grid>
-        <MovieList action={action} movies={movieSlice[pagination-1]}></MovieList>
-      </Grid>
-      <Pagination count={movieSlice.length} color="primary" variant="outlined" shape="rounded" size="large" showFirstButton showLastButton page={parseInt(pagination)} sx={{ justifyContent: 'center', margin: 'auto', marginTop: '20px'}} 
-        renderItem={(item) => (
-          <PaginationItem component={Link} to={`${page}/page${item.page}`} {...item}/>
+        {(page === "/movies/favorites") ? (
+          <MovieList action={action} movies={movieSlice[pagination-1]}></MovieList>
+        ) : (
+          <MovieList action={action} movies={displayedMovies}></MovieList>
         )}
-      />
+      </Grid>
+      {(page === "/movies/favorites") ? (
+        <Pagination count={movieSlice.length} color="primary" variant="outlined" shape="rounded" size="large" showFirstButton showLastButton page={parseInt(pagination)} sx={{ justifyContent: 'center', margin: 'auto', marginTop: '20px'}} 
+          renderItem={(item) => (
+            <PaginationItem component={Link} to={`${page}/page${item.page}`} {...item}/>
+          )}
+        />
+      ) : (
+        <Pagination count={(page === "") ? 100 : 20} color="primary" variant="outlined" shape="rounded" size="large" showFirstButton showLastButton page={parseInt(pagination)} sx={{ justifyContent: 'center', margin: 'auto', marginTop: '20px'}}
+          renderItem={(item) => (
+            <PaginationItem component={Link} to={`${page}/page${item.page}`} {...item}/>
+          )}
+        />
+      )}
     </Grid>
   );
 }

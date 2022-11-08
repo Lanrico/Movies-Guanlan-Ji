@@ -12,7 +12,7 @@ const UpcomingMoviesPage = (props) => {
 
   const { pagination } = useParams();
 
-  const {  data, error, isLoading, isError }  = useQuery('discoverUpcoming', getUpcomingMovies)
+  const {  data, error, isLoading, isError }  = useQuery(["discoverUpcoming", pagination], getUpcomingMovies)
 
   if (isLoading) {
     return <Spinner />
@@ -22,9 +22,6 @@ const UpcomingMoviesPage = (props) => {
     return <h1>{error.message}</h1>
   }  
   const movies = data.results;
-  
-  // const favorites = movies.filter(m => m.favorite)
-  // localStorage.setItem('favorites', JSON.stringify(favorites))
 
   return (
     <PageTemplate
