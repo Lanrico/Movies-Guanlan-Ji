@@ -26,7 +26,6 @@ const MoviesContextProvider = (props) => {
     else{
       newMustWatch = [...mustWatch];
     }
-    console.log(newMustWatch)
     setMustWatch(newMustWatch)
   };
 

@@ -1,7 +1,6 @@
 import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { getUpcomingMovies } from "../api/tmdb-api";
-// import { getTrendingMovies } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import { useQuery } from 'react-query';
 import PlaylistAddIcon from '../components/cardIcons/addToMustWatch'
@@ -32,6 +31,7 @@ const UpcomingMoviesPage = (props) => {
       }}    
       page="/movies/upcoming"
       pagination={pagination}
+      total_pages={data.total_pages}
     />
   );
 };

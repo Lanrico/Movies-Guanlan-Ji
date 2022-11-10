@@ -36,6 +36,7 @@ const HomePage = (props) => {
       }}
       page=""
       pagination={pagination}
+      total_pages={data.total_pages}
     />
   );
 };

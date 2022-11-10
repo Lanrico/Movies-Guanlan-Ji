@@ -49,7 +49,7 @@ export default function MovieCard({ movie, action }) {
           
         }
         title={
-          <Typography variant="h5" component="p">
+          <Typography variant="h5" component="p" textAlign={'center'} >
             {movie.title}{" "}
           </Typography>
         }
@@ -62,16 +62,16 @@ export default function MovieCard({ movie, action }) {
             : img
         }
       />
-      <CardContent>
+      <CardContent sx={{pb : 0}}>
         <Grid container>
-          <Grid item xs={6}>
-            <Typography variant="h6" component="p">
+          <Grid item xs={8}>
+            <Typography variant="h6" component="p" textAlign={'left'}>
               <CalendarIcon fontSize="small" />
               {movie.release_date}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" component="p">
+          <Grid item xs={4}>
+            <Typography variant="h6" component="p" textAlign={'right'}>
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
@@ -81,7 +81,7 @@ export default function MovieCard({ movie, action }) {
       <CardActions disableSpacing>
         {action(movie)}
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
+          <Button variant="outlined" size="medium" color="primary" >
             More Info ...
           </Button>
         </Link>
