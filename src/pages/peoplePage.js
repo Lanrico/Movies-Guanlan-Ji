@@ -9,7 +9,6 @@ import TrendingTabs from "../components/trendingTabs";
 import Pagination from '@mui/material/Pagination';
 import { PaginationItem } from "@mui/material";
 import { Link } from "react-router-dom";
-import PersonCard from "../components/personCard";
 import PeopleList from "../components/peopleCardList";
 
 const PeoplePage = (props) => {

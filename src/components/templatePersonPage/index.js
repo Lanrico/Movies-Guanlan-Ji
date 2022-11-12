@@ -13,8 +13,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { Paper, Toolbar, Typography } from "@mui/material";
 import MediaButton from "../mediaButtons";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 const TemplatePersonPage = ({ person, children }) => {
   const { data, error, isLoading, isError } = useQuery(
@@ -27,8 +25,6 @@ const TemplatePersonPage = ({ person, children }) => {
     person.birthday,
     person.place_of_birth
   ];
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   function srcset(image, width, height, rows = 1, cols = 1) {
     return {
       src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
@@ -51,7 +47,7 @@ const TemplatePersonPage = ({ person, children }) => {
     <>
       <PersonHeader person={person} />
       <Grid container spacing={5} sx={{ padding: "15px" }}>
-        <Grid item xs={isMobile?12:3}>
+        <Grid item xs={12} sm={6} md={3}>
           <div sx={{
             display: "flex",
             flexWrap: "wrap",
@@ -138,7 +134,7 @@ const TemplatePersonPage = ({ person, children }) => {
           </Paper>
         </Grid>
 
-        <Grid item container xs={isMobile?12:9}>
+        <Grid item container xs={12} sm={6} md={9}>
           {children}
         </Grid>
       </Grid>
