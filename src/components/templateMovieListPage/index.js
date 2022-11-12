@@ -16,7 +16,6 @@ function MovieListPageTemplate({ movies, title, action, page, total_pages, pagin
   const genreId = Number(genreFilter);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  // var tabValue = 0;
   let displayedMovies = movies
     .filter((m) => {
       return m.title.toLowerCase().search(nameFilter.toLowerCase()) !== -1;

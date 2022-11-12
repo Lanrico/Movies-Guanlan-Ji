@@ -8,10 +8,18 @@ import { useQuery } from "react-query";
 import Spinner from '../spinner';
 
 const TemplateMoviePage = ({ movie, children }) => {
-  const { data , error, isLoading, isError } = useQuery(
+  const { data, error, isLoading, isError } = useQuery(
     ["images", { id: movie.id }],
     getMovieImages
   );
+
+  function srcset(image, width, height, rows = 1, cols = 1) {
+    return {
+      src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+      srcSet: `${image}?w=${width * cols}&h=${height * rows
+        }&fit=crop&auto=format&dpr=2 2x`,
+    };
+  }
 
   if (isLoading) {
     return <Spinner />;
@@ -20,8 +28,8 @@ const TemplateMoviePage = ({ movie, children }) => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  const images = data.posters 
-
+  const images = data.posters;
+  images[0].featured = true;
   return (
     <>
       <MovieHeader movie={movie} />
@@ -33,16 +41,27 @@ const TemplateMoviePage = ({ movie, children }) => {
             flexWrap: "wrap",
             justifyContent: "space-around",
           }}>
-            <ImageList 
-                cols={1}>
-                {images.map((image) => (
-                    <ImageListItem key={image.file_path} cols={1}>
+            <ImageList
+              sx={{
+                transform: 'translateZ(0)',
+                height: 600
+              }}
+              gap={1}
+            >
+              {images.map((image) => {
+                
+                const cols = image.featured ? 2 : 1;
+                const rows = image.featured ? 2 : 1;
+                return (
+                  <ImageListItem key={image.file_path} cols={cols} rows={rows}>
                     <img
-                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                        alt={image.poster_path}
+                      {...srcset(`https://image.tmdb.org/t/p/w500/${image.file_path}`, 400, 200, rows, cols)}
+                      src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
+                      alt={image.poster_path}
                     />
-                    </ImageListItem>
-                ))}
+                  </ImageListItem>
+                )
+              })}
             </ImageList>
           </div>
         </Grid>

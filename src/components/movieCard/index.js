@@ -16,7 +16,7 @@ import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 
-export default function MovieCard({ movie, action }) { 
+export default function MovieCard({ movie, action, width }) { 
   const { favorites } = useContext(MoviesContext);
   const { mustWatch } = useContext(MoviesContext);
 
@@ -33,7 +33,7 @@ export default function MovieCard({ movie, action }) {
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, width: width? width : "auto", justifyContent: 'center', margin: '0 auto'}}>
       <CardHeader
         avatar={
           movie.favorite ? (
@@ -73,7 +73,7 @@ export default function MovieCard({ movie, action }) {
           <Grid item xs={4}>
             <Typography variant="h6" component="p" textAlign={'right'}>
               <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
+              {"  "} {movie.vote_average.toFixed(1)}{" "}
             </Typography>
           </Grid>
         </Grid>

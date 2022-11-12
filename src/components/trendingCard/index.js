@@ -34,7 +34,7 @@ export default function TrendingCard({ type, input }) {
         </Card>
       </Link>
     ) : (
-      <Link to={`/person/${input.id}`} style={{textDecorationLine: 'none'}}>
+      <Link to={`/people/${input.id}`} style={{textDecorationLine: 'none'}}>
         <Card sx={{ maxWidth: 345 }}>
           <CardHeader sx={{ padding: '5px' }}
             title={

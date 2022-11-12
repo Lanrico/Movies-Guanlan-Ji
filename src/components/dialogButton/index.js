@@ -16,6 +16,7 @@ import Movie from "../movieCard";
 import AddToFavoritesIcon from '../cardIcons/addToFavorites'
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import Zoom from '@mui/material/Zoom';
 
 
 function SimpleDialog(props) {
@@ -30,6 +31,7 @@ function SimpleDialog(props) {
   };
 
   return (
+    <Zoom in={open}>
     <Dialog onClose={handleClose} open={open} fullWidth maxWidth="md">
       <DialogTitle>
         <Typography variant="h4" component="p">
@@ -39,13 +41,13 @@ function SimpleDialog(props) {
       <Stack sx={{ pt: 0, width: "100%" }} direction="row" spacing={3} justifyContent="center">
         {outputList.map((o) => (
           o ?
-          <Movie key={o.id} movie={o} action={(movie) => {
+          <Movie key={o.id} movie={o} width={270} action={(movie) => {
             return <AddToFavoritesIcon movie={movie} />
           }} />
           : null
         ))}
       </Stack>
-    </Dialog>
+    </Dialog></Zoom>
   );
 }
 

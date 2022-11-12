@@ -1,8 +1,8 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Navigate, Routes} from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
+import PersonPage from "./pages/personDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader';
@@ -34,10 +34,11 @@ const App = () => {
           <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
           <Route path="/movies/favorites/page:pagination" element={<FavoriteMoviesPage />} />
           <Route path="/movies/:id" element={<MoviePage />} />
+          <Route path="/people/:id" element={<PersonPage />} />
           <Route path="/movies/upcoming/page:pagination" element={<UpcomingMoviesPage />} />
           <Route path="/page:pagination" element={<HomePage />} />
           <Route path="/people/page:pagination" element={<PeoplePage />} />
-          {/* <Route path="*" element={ <Navigate to="/page1" /> } /> */}
+          <Route path="*" element={ <Navigate to="/page1" /> } />
           <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
         </Routes>
         </MoviesContextProvider>

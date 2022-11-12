@@ -1,20 +1,12 @@
-import React, { useContext } from "react";
-import { MoviesContext } from "../../contexts/moviesContext";
+import React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
-import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
-import Avatar from '@mui/material/Avatar';
 import DialogButton from "../dialogButton";
 
 export default function PersonCard({ person }) {
@@ -23,7 +15,7 @@ export default function PersonCard({ person }) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <Link to={`/person/${person.id}`}  style={{textDecorationLine: 'none', color : 'black'}}>
+      <Link to={`/people/${person.id}`}  style={{textDecorationLine: 'none', color : 'black'}}>
         <CardHeader
           title={
             <Typography variant="h5" textAlign={'center'}  component="p">
