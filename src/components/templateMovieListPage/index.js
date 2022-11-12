@@ -46,10 +46,10 @@ function MovieListPageTemplate({ movies, title, action, page, total_pages, pagin
       </Grid>
       {(page === "") ? (
         <>
-          <Grid xs={12} sm={9}>
+          <Grid item xs={12} sm={9}>
             <TrendingTabs type={"movie"} />
           </Grid>
-          <Grid xs={12} sm={3}>
+          <Grid item xs={12} sm={3}>
             <LoginBlock />
           </Grid>
         </>

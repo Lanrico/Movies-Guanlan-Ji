@@ -16,26 +16,43 @@ import { purple } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
 import { Snackbar } from '@mui/material';
 import Alert from "@mui/material/Alert";
-
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const theme = createTheme();
 
 export default function LoginBlock() {
-  let user = [
-    { email: "123@123.com", password: "123" }
-  ]
   const [openSuccess, setOpenSuccess] = useState(false);
   const [openFail, setOpenFail] = useState(false);
   const [login, setLogin] = useState(false);
+  const [userName, setUserName] = useState("");
+  const firebaseConfig = {
+    apiKey: "AIzaSyBuCt1AzgifZ98mO8IMvHe7fBqLUT1H5kw",
+    authDomain: "movies-guanlan-ji.firebaseapp.com",
+    projectId: "movies-guanlan-ji",
+    storageBucket: "movies-guanlan-ji.appspot.com",
+    messagingSenderId: "1080962489218",
+    appId: "1:1080962489218:web:5e6e9e8218312990338d9b",
+    measurementId: "G-QFTQJVEKHT"
+  };
+  
 
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
   const handleSubmit = (event) => {
     const data = new FormData(event.currentTarget);
-    if (data.get('email') === user[0].email && data.get('password') === user[0].password) {
+    signInWithEmailAndPassword(auth, data.get('email'), data.get('password'))
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user)
       setOpenSuccess(true);
       setLogin(true);
-    }
-    else {
+      setUserName(user.email);
+      // ...
+    })
+    .catch((error) => {
       setOpenFail(true);
-    }
+    });
     event.preventDefault();
   };
 
@@ -128,7 +145,6 @@ export default function LoginBlock() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me for 30 days"
             />
-            {/* <ColorButton variant="contained">Custom CSS</ColorButton> */}
             <ColorButton
               type="submit"
               fullWidth
@@ -151,7 +167,7 @@ export default function LoginBlock() {
         <Typography textAlign={'center'} variant="h4" >
           Welcome,
           <br></br>
-          {user[0].email}!
+          {userName}!
         </Typography>
         <ColorButton
           fullWidth

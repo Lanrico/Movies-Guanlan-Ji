@@ -18,7 +18,7 @@ People - external_ids
 Extensive data hyperlinking:
 People external_ids : Twitter, Facebook, instagram homepage
 
-simple authentication sorting
+simple authentication sorting and 3rd party authentication
 
 Full cache supporting
 
@@ -32,3 +32,7 @@ Material Icons, Rating, Pagination, Paper, Toolbar, Table, Tab
 Other features:
 Improve the way that the poster shows
 Show the score by stars
+Firebase
+
+Extra configuration:
+npm install firebase
