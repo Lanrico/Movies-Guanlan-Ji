@@ -2,7 +2,7 @@
   "name": "movies",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Lanrico.github.io/Agile-CA1-Guanlan-Ji",
+  "homepage": "https://lanrico.github.io/Movies-Guanlan-Ji",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
