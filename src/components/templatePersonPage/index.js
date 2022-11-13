@@ -41,7 +41,8 @@ const TemplatePersonPage = ({ person, children }) => {
     return <h1>{error.message}</h1>;
   }
 
-  const images = data.profiles
+  const images = data.profiles;
+  if (images.length > 0)
   images[0].featured = true;
   return (
     <>
@@ -53,7 +54,7 @@ const TemplatePersonPage = ({ person, children }) => {
             flexWrap: "wrap",
             justifyContent: "space-around",
           }}>
-            <ImageList
+            {images.length > 0? (<ImageList
               sx={{
                 transform: 'translateZ(0)',
                 height: images[0].height / images[0].width === 1.5 ? 600 : 800
@@ -74,7 +75,7 @@ const TemplatePersonPage = ({ person, children }) => {
                   </ImageListItem>
                 )
               })}
-            </ImageList>
+            </ImageList>):null}
           </div>
           <Paper>
             <Toolbar>

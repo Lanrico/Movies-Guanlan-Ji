@@ -1,4 +1,4 @@
-import React, { useContext  } from "react";
+import React, { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -15,8 +15,9 @@ import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
+import truncate from "lodash/truncate";
 
-export default function MovieCard({ movie, action, width }) { 
+export default function MovieCard({ movie, action, width }) {
   const { favorites } = useContext(MoviesContext);
   const { mustWatch } = useContext(MoviesContext);
 
@@ -33,24 +34,24 @@ export default function MovieCard({ movie, action, width }) {
   }
 
   return (
-    <Card sx={{ maxWidth: 345, width: width? width : "auto", justifyContent: 'center', margin: '0 auto'}}>
+    <Card sx={{ maxWidth: 345, width: width ? width : "auto", justifyContent: 'center', margin: '0 auto' }}>
       <CardHeader
         avatar={
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
             </Avatar>
-          ) : 
-          movie.mustWatch ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
-              <PlaylistAddIcon />
-            </Avatar>
-          ) : null
-          
+          ) :
+            movie.mustWatch ? (
+              <Avatar sx={{ backgroundColor: 'red' }}>
+                <PlaylistAddIcon />
+              </Avatar>
+            ) : null
+
         }
         title={
           <Typography variant="h5" component="p" textAlign={'center'} >
-            {movie.title}{" "}
+            {truncate(movie.title, {length:21})}{" "}
           </Typography>
         }
       />
@@ -62,7 +63,7 @@ export default function MovieCard({ movie, action, width }) {
             : img
         }
       />
-      <CardContent sx={{pb : 0}}>
+      <CardContent sx={{ pb: 0 }}>
         <Grid container>
           <Grid item xs={8}>
             <Typography variant="h6" component="p" textAlign={'left'}>
@@ -79,12 +80,18 @@ export default function MovieCard({ movie, action, width }) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        {action(movie)}
-        <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary" >
-            More Info ...
-          </Button>
-        </Link>
+        <Grid container>
+          <Grid item xs={5}>
+            {action(movie)}
+          </Grid>
+          <Grid item xs={7}>
+            <Link to={`/movies/${movie.id}`} style={{textDecorationLine: 'none'}}>
+              <Button variant="outlined" size="medium" color="primary" sx={{height : "50px"}} >
+                More Info ...
+              </Button>
+            </Link>
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );

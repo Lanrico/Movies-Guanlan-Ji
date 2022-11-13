@@ -29,15 +29,15 @@ export default function MediaButton(person) {
             <FacebookIcon color="primary" fontSize="large" />
           </Button>
         ) : null}
-      {externalIds.twitter_id ?
+      {externalIds.facebook_id ?
         (
           <Button size="small" href={`https://facebook.com/${externalIds.facebook_id}`}>
             <TwitterIcon color="primary" fontSize="large" />
           </Button>
         ) : null}
-      {externalIds.twitter_id ?
+      {externalIds.instagram_id ?
         (
-          <Button size="small" href={`https://instagram.com/${externalIds.facebook_id}`}>
+          <Button size="small" href={`https://instagram.com/${externalIds.instagram_id}`}>
             <InstagramIcon color="primary" fontSize="large" />
           </Button>
         ) : null}
