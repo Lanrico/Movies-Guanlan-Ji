@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/Agile-CA1-Guanlan-Ji/static/js/main.2f35e96b.js",
-    "static/media/pexels-dziana-hasanbekava-5480827.jpg": "/Agile-CA1-Guanlan-Ji/static/media/pexels-dziana-hasanbekava-5480827.6123c500508cea5447e7.jpg",
-    "static/media/film-poster-placeholder.png": "/Agile-CA1-Guanlan-Ji/static/media/film-poster-placeholder.9a8182eb4c8ae70fe602.png",
-    "index.html": "/Agile-CA1-Guanlan-Ji/index.html",
-    "main.2f35e96b.js.map": "/Agile-CA1-Guanlan-Ji/static/js/main.2f35e96b.js.map"
+    "main.js": "/Movies-Guanlan-Ji/static/js/main.c134766b.js",
+    "static/media/pexels-dziana-hasanbekava-5480827.jpg": "/Movies-Guanlan-Ji/static/media/pexels-dziana-hasanbekava-5480827.6123c500508cea5447e7.jpg",
+    "static/media/film-poster-placeholder.png": "/Movies-Guanlan-Ji/static/media/film-poster-placeholder.9a8182eb4c8ae70fe602.png",
+    "index.html": "/Movies-Guanlan-Ji/index.html",
+    "main.c134766b.js.map": "/Movies-Guanlan-Ji/static/js/main.c134766b.js.map"
   },
   "entrypoints": [
-    "static/js/main.2f35e96b.js"
+    "static/js/main.c134766b.js"
   ]
 }
