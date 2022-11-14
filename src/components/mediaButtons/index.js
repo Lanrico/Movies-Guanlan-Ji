@@ -26,13 +26,13 @@ export default function MediaButton(person) {
       {externalIds.twitter_id ?
         (
           <Button size="small" href={`https://twitter.com/${externalIds.twitter_id}`}>
-            <FacebookIcon color="primary" fontSize="large" />
+            <TwitterIcon color="primary" fontSize="large" />
           </Button>
         ) : null}
       {externalIds.facebook_id ?
         (
           <Button size="small" href={`https://facebook.com/${externalIds.facebook_id}`}>
-            <TwitterIcon color="primary" fontSize="large" />
+            <FacebookIcon color="primary" fontSize="large" />
           </Button>
         ) : null}
       {externalIds.instagram_id ?
