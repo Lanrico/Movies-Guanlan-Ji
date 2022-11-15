@@ -1,12 +1,18 @@
 {
   "files": {
-    "main.js": "/Movies-Guanlan-Ji/static/js/main.5e9d6ca1.js",
+    "main.js": "/Movies-Guanlan-Ji/static/js/main.8a183d9a.js",
+    "static/js/777.fd540676.chunk.js": "/Movies-Guanlan-Ji/static/js/777.fd540676.chunk.js",
+    "static/js/316.6c138106.chunk.js": "/Movies-Guanlan-Ji/static/js/316.6c138106.chunk.js",
+    "static/js/495.3362f9c6.chunk.js": "/Movies-Guanlan-Ji/static/js/495.3362f9c6.chunk.js",
     "static/media/pexels-dziana-hasanbekava-5480827.jpg": "/Movies-Guanlan-Ji/static/media/pexels-dziana-hasanbekava-5480827.6123c500508cea5447e7.jpg",
     "static/media/film-poster-placeholder.png": "/Movies-Guanlan-Ji/static/media/film-poster-placeholder.9a8182eb4c8ae70fe602.png",
     "index.html": "/Movies-Guanlan-Ji/index.html",
-    "main.5e9d6ca1.js.map": "/Movies-Guanlan-Ji/static/js/main.5e9d6ca1.js.map"
+    "main.8a183d9a.js.map": "/Movies-Guanlan-Ji/static/js/main.8a183d9a.js.map",
+    "777.fd540676.chunk.js.map": "/Movies-Guanlan-Ji/static/js/777.fd540676.chunk.js.map",
+    "316.6c138106.chunk.js.map": "/Movies-Guanlan-Ji/static/js/316.6c138106.chunk.js.map",
+    "495.3362f9c6.chunk.js.map": "/Movies-Guanlan-Ji/static/js/495.3362f9c6.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.5e9d6ca1.js"
+    "static/js/main.8a183d9a.js"
   ]
 }
