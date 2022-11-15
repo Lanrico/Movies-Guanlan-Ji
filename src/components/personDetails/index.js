@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Button, Grid, Pagination, PaginationItem } from "@mui/material";
 import { getPersonMovieCredits } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
-import MovieCard from "../movieCard"
 import Spinner from '../spinner';
 import AddToFavoritesIcon from '../cardIcons/addToFavorites'
+const MovieCard = lazy(() => import("../movieCard"));
 
 const PeopleDetails = ({ person }) => {
   const [movieCardPage, setMovieCardPage] = useState(1);
@@ -41,9 +41,11 @@ const PeopleDetails = ({ person }) => {
           <Typography variant="h6" component="h4">
             {person.name}<br></br> starred in these movies:
           </Typography>
-          <MovieCard width={350} movie={creditsMovies[movieCardPage - 1]} action={(movie) => {
-            return <AddToFavoritesIcon movie={movie} />
-          }} />
+          <Suspense fallback={<h1>Building movie card</h1>}>
+            <MovieCard width={350} movie={creditsMovies[movieCardPage - 1]} action={(movie) => {
+              return <AddToFavoritesIcon movie={movie} />
+            }} />
+          </Suspense>
           <Pagination count={creditsMovies.length > 5 ? 5 : creditsMovies.length} hidePrevButton hideNextButton sx={{ justifyContent: 'center', margin: 'auto', marginTop: '20px' }}
             renderItem={(item) => (
               <PaginationItem component={Button} onClick={item.selected ? setMovieCardPage(item.page) : null} {...item} />

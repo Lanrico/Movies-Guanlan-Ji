@@ -18,6 +18,7 @@ import { Snackbar } from '@mui/material';
 import Alert from "@mui/material/Alert";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 const theme = createTheme();
 
 export default function LoginBlock() {
@@ -34,25 +35,25 @@ export default function LoginBlock() {
     appId: "1:1080962489218:web:5e6e9e8218312990338d9b",
     measurementId: "G-QFTQJVEKHT"
   };
-  
+
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const handleSubmit = (event) => {
     const data = new FormData(event.currentTarget);
     signInWithEmailAndPassword(auth, data.get('email'), data.get('password'))
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log(user)
-      setOpenSuccess(true);
-      setLogin(true);
-      setUserName(user.email);
-      // ...
-    })
-    .catch((error) => {
-      setOpenFail(true);
-    });
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user)
+        setOpenSuccess(true);
+        setLogin(true);
+        setUserName(user.email);
+        // ...
+      })
+      .catch((error) => {
+        setOpenFail(true);
+      });
     event.preventDefault();
   };
 

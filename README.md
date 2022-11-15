@@ -21,6 +21,7 @@ This Movies app adds many new features and new endpoint from tmdb-api based on t
 + Responsive UI for most new views
 + Improve the way that the posters of movies and people shows.
 + New MUI components: Material Icons, Rating, Pagination, Paper, Toolbar, Table, Tab
++ Use code splitting to improve the effciency of the webpage
 + Deploy the page online based on GitHub Pages (The link is https://lanrico.github.io/Movies-Guanlan-Ji/)
 
 
@@ -49,5 +50,6 @@ ps: Only a part of the page require authentication, so it is not included in Rou
 
 ## Independent learning (If relevant).
 
-Deploy the page online based on GitHub Pages (The link is https://lanrico.github.io/Movies-Guanlan-Ji/)
++ Use code splitting to improve the effciency of the webpage
++ Deploy the page online based on GitHub Pages (The link is https://lanrico.github.io/Movies-Guanlan-Ji/)
 The online article that reference to: https://create-react-app.dev/docs/deployment/

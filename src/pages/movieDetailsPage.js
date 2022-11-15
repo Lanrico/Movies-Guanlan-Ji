@@ -1,11 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { useParams } from 'react-router-dom';
-import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
+const MovieDetails = lazy(() => import("../components/movieDetails"));
 const MoviePage = (props) => {
   const { id } = useParams();
   const { data: movie, error, isLoading, isError } = useQuery(
@@ -20,13 +20,15 @@ const MoviePage = (props) => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  
+
   return (
     <>
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
+            <Suspense fallback={<h1>Building list</h1>}>
+              <MovieDetails movie={movie} />
+            </Suspense>
           </PageTemplate>
         </>
       ) : (
